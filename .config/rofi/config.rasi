@@ -1,0 +1,7 @@
+configuration {
+ modi: "run";
+ theme: "Arc-Dark";
+ font: "hack 16";
+ combi-modi: "run";
+
+ }
