@@ -74,17 +74,13 @@ keys = [
     Key2("M-f", lazy.spawn(file_manager), desc="Launch file manager"),
     Key2(
         "<XF86AudioRaiseVolume>",
-        lazy.spawn(
-            "pactl set-sink-volume 0 +5% ; pactl set-sink-volume 1 +5% ; pactl set-sink-volume 2 +5% ; pactl set-sink-volume 3 +5% ; pactl set-sink-volume 4 +5%"
-        ),
-        desc="Raise Volume and unmute if muted",
+        lazy.spawn("changeVolume -5%"),
+        desc="Raise Volume",
     ),
     Key2(
         "<XF86AudioLowerVolume>",
-        lazy.spawn(
-            "pactl set-sink-volume 0 -5% ; pactl set-sink-volume 1 -5% ; pactl set-sink-volume 2 -5% ; pactl set-sink-volume 3 -5% ; pactl set-sink-volume 4 -5%"
-        ),
-        desc="Lower Volume and unmute if muted",
+        lazy.spawn("changeVolume +5%"),
+        desc="Lower Volume",
     ),
     Key2(
         "<XF86MonBrightnessUp>",
@@ -96,7 +92,21 @@ keys = [
         lazy.spawn("light -U 5"),
         desc="Lower Brightness",
     ),
-    Key2("M-l", lazy.spawn("slock"), desc="Lock screen usin slock"),
+    Key2(
+        "M-l",
+        lazy.spawn("slock"),
+        desc="Lock screen usin slock",
+    ),
+    Key2(
+        "C-<Return>",
+        lazy.spawn("dunstctl close"),
+        desc="Close dunst notification",
+    ),
+    Key2(
+        "C-S-<Return>",
+        lazy.spawn("dunstctl history-pop"),
+        desc="Reopen last dunst notification",
+    ),
 ]
 
 group_names = [
@@ -213,7 +223,7 @@ screens = [
             widgets,
             size=30,
         ),
-    ),
+    )
 ]
 
 mouse = [
